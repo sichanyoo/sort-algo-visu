@@ -1,5 +1,5 @@
 import React from 'react';
-import './sortAlgoVisu.css';
+import './SortAlgoVisu.css';
 
 //interval between visual changes in ms
 const SPEED = 1;
@@ -8,7 +8,7 @@ const SPEED = 1;
 const BARS = 300;
 
 //default color of bars
-const DEFAULT_COLOR = 'white';
+const DEFAULT_COLOR = 'black';
 
 //color of bars during comparison
 const COMP_COLOR = 'blue';
@@ -17,7 +17,7 @@ const COMP_COLOR = 'blue';
 const END_COLOR = 'green';
 
 //main class
-export default class sortAlgoVisu extends React.Component {
+export default class SortAlgoVisu extends React.Component {
     constructor(props) {
         super(props);
         //set array as member of this.state
@@ -34,7 +34,7 @@ export default class sortAlgoVisu extends React.Component {
         //new arr to store randomized arr
         const arr = [];
         for (let i = 0; i < BARS; i++) {
-            arr.push(randomIntInInterval(10, 1000));
+            arr.push(randomIntInInterval(10, 750));
         }
         //reset this.state as newly randomized array using setState()
         this.setState({arr});
@@ -65,13 +65,21 @@ export default class sortAlgoVisu extends React.Component {
         const {arr} = this.state;
 
         return (
-            <>
+            <div className = "arr-container">
                 {arr.map((value, idx) => (
-                    <div className = "bar" key = {idx}>
-                        {value}
-                    </div>
+                    <div 
+                        className = "arr-bar" 
+                        key = {idx} 
+                        style = {{
+                            height: value, 
+                    }}></div>
                 ))}
-            </>
+                <button onClick={() => this.initArr()}>Generate New Array</button>
+                <button onClick={() => this.mergeSort()}>Merge Sort</button>
+                <button onClick={() => this.quickSort()}>Quick Sort</button>
+                <button onClick={() => this.heapSort()}>Heap Sort</button>
+                <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            </div>
         );
     }
 

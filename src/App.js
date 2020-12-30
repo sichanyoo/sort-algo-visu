@@ -1,15 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import sortAlgoVisu from './visualizer/sortAlgoVisu';
+import SortAlgoVisu from './visualizer/SortAlgoVisu';
 
 
 function App() {
   return (
     <div className="App">
-      <sortAlgoVisu></sortAlgoVisu>
+      <SortAlgoVisu></SortAlgoVisu>
     </div>
   );
 }
-
+ 
 export default App;

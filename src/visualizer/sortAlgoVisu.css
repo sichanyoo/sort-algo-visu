@@ -1,6 +1,11 @@
-.bar {
-    width: 2px;
-    display: inline-block;
-    margin: 0 1px;
-    color: black;
+.arr-bar {
+  width: 2px;
+  margin: 1px;
+  display: inline-block;
+  background-color: black;
+}
+
+.arr-container {
+  position: absolute;
+  left: 100px;
 }
