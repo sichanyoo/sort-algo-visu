@@ -6,6 +6,32 @@
 }
 
 .arr-container {
-  position: absolute;
-  left: 100px;
+  width: 75%;
+  margin: auto;
+}
+
+.button {
+  border: none;
+  color: white;
+  background-color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.generate-button {
+  top: 10 px;
+  left: 10 px;
+  border: none;
+  color: white;
+  background-color: rgb(59, 115, 206);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
 }

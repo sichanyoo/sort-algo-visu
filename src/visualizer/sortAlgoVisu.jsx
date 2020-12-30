@@ -1,11 +1,12 @@
 import React from 'react';
 import './SortAlgoVisu.css';
+import {getMergeSortAni} from '../algosAndAni/sortAlgos.js';
 
 //interval between visual changes in ms
 const SPEED = 1;
 
 //number of values to sort in array
-const BARS = 300;
+const BARS = 250;
 
 //default color of bars
 const DEFAULT_COLOR = 'black';
@@ -34,11 +35,11 @@ export default class SortAlgoVisu extends React.Component {
         //new arr to store randomized arr
         const arr = [];
         for (let i = 0; i < BARS; i++) {
-            arr.push(randomIntInInterval(10, 750));
+            arr.push(randomIntInInterval(10, 700));
         }
         //reset this.state as newly randomized array using setState()
         this.setState({arr});
-    }
+    } 
 
     /*//////////////////////////////////////
         sort algo methods 
@@ -59,6 +60,10 @@ export default class SortAlgoVisu extends React.Component {
 
     }
 
+    countingSort() {
+
+    }
+
 
     //render method
     render() {
@@ -66,6 +71,20 @@ export default class SortAlgoVisu extends React.Component {
 
         return (
             <div className = "arr-container">
+                <br></br>
+                <button onClick={() => this.initArr()} className = "generate-button">Generate New Array</button>
+                &nbsp;
+                <button onClick={() => this.mergeSort()} className = "button">Merge Sort</button>
+                &nbsp;
+                <button onClick={() => this.quickSort()} className = "button">Quick Sort</button>
+                &nbsp;
+                <button onClick={() => this.heapSort()} className = "button">Heap Sort</button>
+                &nbsp;
+                <button onClick={() => this.bubbleSort()} className = "button">Bubble Sort</button>
+                &nbsp;
+                <button onClick={() => this.countingSort()} className = "button">Counting Sort</button>
+                <br></br>
+                <br></br>
                 {arr.map((value, idx) => (
                     <div 
                         className = "arr-bar" 
@@ -74,11 +93,6 @@ export default class SortAlgoVisu extends React.Component {
                             height: value, 
                     }}></div>
                 ))}
-                <button onClick={() => this.initArr()}>Generate New Array</button>
-                <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                <button onClick={() => this.quickSort()}>Quick Sort</button>
-                <button onClick={() => this.heapSort()}>Heap Sort</button>
-                <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
             </div>
         );
     }
