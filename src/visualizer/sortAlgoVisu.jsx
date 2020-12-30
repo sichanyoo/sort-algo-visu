@@ -21,7 +21,7 @@ export default class sortAlgoVisu extends React.Component {
     constructor(props) {
         super(props);
         //set array as member of this.state
-        this.state = {array : [], };
+        this.state = {arr: [], };
     }
 
     //randomize array first time website is opened
@@ -33,10 +33,11 @@ export default class sortAlgoVisu extends React.Component {
     initArr() {
         //new arr to store randomized arr
         const arr = [];
-        for (let i = 0; i < BARS; i++) 
-            array.push(randomIntInInterval(10, 1000));
+        for (let i = 0; i < BARS; i++) {
+            arr.push(randomIntInInterval(10, 1000));
+        }
         //reset this.state as newly randomized array using setState()
-        this.setState(arr);
+        this.setState({arr});
     }
 
     /*//////////////////////////////////////
@@ -61,7 +62,17 @@ export default class sortAlgoVisu extends React.Component {
 
     //render method
     render() {
+        const {arr} = this.state;
 
+        return (
+            <>
+                {arr.map((value, idx) => (
+                    <div className = "bar" key = {idx}>
+                        {value}
+                    </div>
+                ))}
+            </>
+        );
     }
 
 }
