@@ -1,5 +1,5 @@
 import React from 'react';
-import './SortAlgoVisu.css';
+import './sortAlgoVisu.css';
 import {mergeSortAni} from '../algosAndAni/sortAlgos.js';
 
 //interval between visual changes in ms
