@@ -56,8 +56,19 @@ export default class SortAlgoVisu extends React.Component {
             //and at 1st and 2nd we toggle colors
             const toggle = i % 3 != 2;
 
-            //if toggle is 0 or 1, then it is just changing color time
-            if (toggle) {
+            //if i reached the last index pair, that means the sort sequence is over
+            //then, change the bars from to left to right to be green
+            if (i == ani.length -1) {
+                //loop from 0 to bars.length-1
+                for (let j = 0; j < bars.length; j++) {
+                    //offset time by i * SPEED (the moment at which sort sequence ends)
+                    //and then add j * SPEED to it
+                    setTimeout(() => {
+                        bars[j].style.backgroundColor = END_COLOR;
+                    }, (i * SPEED) + (j * SPEED));
+                }
+            } else if (toggle) {
+                //if toggle is 0 or 1, then it is just changing color time
                 //get the indices of two bars being compared at this instant
                 const [one, two] = ani[i];
                 //if i % 3 is 0, that means color has to go from default to comp since current color is default (at beginning of comparison)
