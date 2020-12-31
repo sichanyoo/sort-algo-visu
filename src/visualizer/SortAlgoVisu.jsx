@@ -37,9 +37,14 @@ export default class SortAlgoVisu extends React.Component {
         for (let i = 0; i < BARS; i++) {
             arr.push(randomIntInInterval(10, 700));
         }
+        const bars = document.getElementsByClassName('arr-bar');
+        for (let i = 0; i < bars.length; i++) {
+            bars[i].style.backgroundColor = DEFAULT_COLOR;
+        }
+
         //reset this.state as newly randomized array using setState()
         this.setState({arr});
-    } 
+    }
 
     /*//////////////////////////////////////
         sort algo methods 

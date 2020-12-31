@@ -8,7 +8,7 @@ export function mergeSortAni(arr) {
  //merge sort arr from 0 to length - 1, and store indices compared in ani
  mergeSort(arr, 0, arr.length - 1, aux, ani);
  //end of sort sequence signifier
- ani.push([0, 0]);
+ ani.push([-1, -1]);
  //return the pairs of indices compared
  return ani;
 }
