@@ -308,9 +308,15 @@ function countSort(arr, max, min, ani) {
 
 //heapsort animation
 export function heapSortAni(arr) {
-
+    const ani = [];
+    heapSort(arr, ani);
+    return ani;
 }
 
 function heapSort() {
+   
+}
+
+function heapify() {
     
 }
