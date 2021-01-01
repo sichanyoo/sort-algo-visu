@@ -1,3 +1,5 @@
+//merge sort algos
+
 //merge sort animation
 export function mergeSortAni(arr) {
  //array of pair of indices compared, in order
@@ -88,3 +90,154 @@ function merge (main, start, mid, end, aux, ani,) {
  }
 }
 
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//quick sort algos
+
+//quicksort animation
+export function quickSortAni(arr) {
+    //array of index comparisons in order
+    const ani = [];
+    //get animation sequence
+    quickSort(arr, 0, arr.length-1, ani);
+    //end of sort sequence signifier
+    ani.push([-1, -1]);
+    //return animation sequence
+    return ani;
+}
+
+//main quick sort function
+function quickSort(main, start, end, ani) {
+    //if start is past the end, return
+    if (start >= end) return;
+    //partitioning index
+    const pi = partition(main, start, end, ani);
+    //recursively quick sort left of partition
+    quickSort(main, start, pi - 1, ani);
+    //recursively quick sort right of partition
+    quickSort(main, pi + 1, end, ani);
+}
+
+//partitioning function for quicksort
+function partition(arr, start, end, ani) {
+    
+    //pivot element, chosen as first element in given arr
+    const pivot = arr[start];
+    //index for first element > pivot
+    //from left to right
+    let left = start;
+    //index for first element <= pivot
+    //from right to left
+    let right = end;
+
+    //while left does not go past right
+    //i.e. at the end of the loop, right will point to
+    //the FIRST element > pivot from left to right
+    while (left < right) {
+        //increment left until element > pivot is found
+        while(arr[left] <= pivot) {
+            //indices compared
+            ani.push([left, start]);
+            ani.push([left, start]);
+            //filler
+            ani.push([-1, -1]);
+            ani.push([-1, -1]);
+            left++;
+        }
+        //decrement right until element <= pivot is found
+        while(arr[right] > pivot) {
+            //indices compared
+            ani.push([right, start]);
+            ani.push([right, start]);
+            //filler
+            ani.push([-1, -1]);
+            ani.push([-1, -1]);
+            right--;
+        }
+        //if left has not gone past right
+        if (left < right) {
+            //indices compared 
+            ani.push([left, right]);
+            ani.push([left, right]);
+            //swap bar heights
+            ani.push([left, arr[right]]);
+            ani.push([right, arr[left]]);
+            //swap the elements
+            const temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+        }
+    }
+    //swap bar heights
+    //indices compared 
+    ani.push([start, right]);
+    ani.push([start, right]);
+    //swap bar heights
+    ani.push([start, arr[right]]);
+    ani.push([right, arr[start]]);
+
+    //swap the pivot element to its sorted index
+    const temp = arr[start];
+    arr[start] = arr[right];
+    arr[right] = temp;
+
+    //return pivot's sorted index
+    return right;
+}
+
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//bubble sort algos
+
+export function bubbleSortAni(arr) {
+    //animation sequence to be returned
+    const ani = [];
+    bubbleSort(arr, ani);
+    return ani;
+}
+
+function bubbleSort(arr, ani) {
+    //sort stop condition
+    let unsorted = true;
+    
+    //number of sorted elements counter
+    let j = 0;
+    while (unsorted) {
+        //if the if-statement inside for loop below never executes, 
+        //then unsorted should stay false, meaning array is now sorted
+        unsorted = false;
+        //go through all element until last unsorted element
+        for (let i = 0; i < arr.length - 1 - j; i++) {
+            //animation indices compared added twice to toggle color
+            ani.push([i, i+1]);
+            ani.push([i, i+1]);
+            //if misorder found, swap elements
+            if (arr[i] > arr[i+1]) {
+                //animation 
+                ani.push([i, arr[i+1]]);
+                ani.push([i+1, arr[i]]);
+                const temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+                unsorted = true;
+            } else {
+                //animation index filler
+                ani.push([-1, -1]);
+                ani.push([-1, -1]);
+            }
+        }
+        //one element is nwo sorted
+        j++;
+    }
+
+}
+
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//counting sort algos

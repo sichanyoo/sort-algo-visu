@@ -1,6 +1,8 @@
 import React from 'react';
 import './sortAlgoVisu.css';
 import {mergeSortAni} from '../algosAndAni/sortAlgos.js';
+import {quickSortAni} from '../algosAndAni/sortAlgos.js';
+import {bubbleSortAni} from '../algosAndAni/sortAlgos.js';
 
 //interval between visual changes in ms
 const SPEED = 3;
@@ -59,11 +61,11 @@ export default class SortAlgoVisu extends React.Component {
             const bars = document.getElementsByClassName('arr-bar');
             //boolean that tells us that at every 3rd value we change heights
             //and at 1st and 2nd we toggle colors
-            const toggle = i % 3 != 2;
+            const toggle = i % 3 !== 2;
 
             //if i reached the last index pair, that means the sort sequence is over
             //then, change the bars from to left to right to be green
-            if (i == ani.length -1) {
+            if (i === ani.length -1) {
                 //loop from 0 to bars.length-1
                 for (let j = 0; j < bars.length; j++) {
                     //offset time by i * SPEED (the moment at which sort sequence ends)
@@ -96,7 +98,48 @@ export default class SortAlgoVisu extends React.Component {
     }
 
     quickSort() {
+        //retrieve animation array
+        const ani = quickSortAni(this.state.arr);
 
+        //loop through all index pairs in animation array
+        for (let i = 0; i < ani.length; i++) {
+            //get the html collection of bars
+            const bars = document.getElementsByClassName('arr-bar');
+            //1st and 2nd values are color toggles from comparisons
+            //3rd and 4th values are new height-index pairs
+            //1st and 2nd will always mean toggle, whereas
+            //3rd and 4th can be fillers with -1, -1 pair
+            const toggle = i % 4 < 2;
+            //factored out getting index pair
+
+            if (i === ani.length - 1) {
+                //if i reached end of sort sequence signifier (the last [-1, -1] inserted to ani from quickSortAni())
+                //make graph turn green from left to right
+                for (let j = 0; j < bars.length; j++) {
+                    setTimeout(() => {
+                        bars[j].style.backgroundColor = END_COLOR;
+                    }, (i * SPEED) + (j * SPEED));
+                }
+            } else if (toggle) {
+                const [one, two] = ani[i];
+                //if toggle, change color based on 0 or 1
+                const color = i % 4 === 0 ? COMP_COLOR : DEFAULT_COLOR;
+                //set it on delay of i*SPEED
+                setTimeout(() => {
+                    bars[one].style.backgroundColor = color;
+                    bars[two].style.backgroundColor = color;
+                }, i * SPEED);
+            } else {
+                const [one, two] = ani[i];
+                if (two !== -1) {
+                    //only do something is it's not a filler, meaning actual swapping occurred
+                    //in this case, one would be index and two would be new height at that index
+                    setTimeout(() => {
+                        bars[one].style.height = two + 'px';
+                    }, i * SPEED);
+                }
+            }
+        }
     }
 
     heapSort() {
@@ -104,11 +147,52 @@ export default class SortAlgoVisu extends React.Component {
     }
 
     bubbleSort() {
+        //retrieve animation array
+        const ani = bubbleSortAni(this.state.arr);
 
+       //loop through all index pairs in animation array
+       for (let i = 0; i < ani.length; i++) {
+        //get the html collection of bars
+        const bars = document.getElementsByClassName('arr-bar');
+        //1st and 2nd values are color toggles from comparisons
+        //3rd and 4th values are new height-index pairs
+        //1st and 2nd will always mean toggle, whereas
+        //3rd and 4th can be fillers with -1, -1 pair
+        const toggle = i % 4 < 2;
+        //factored out getting index pair
+
+        if (i === ani.length - 1) {
+            //if i reached end of sort sequence signifier (the last [-1, -1] inserted to ani from quickSortAni())
+            //make graph turn green from left to right
+            for (let j = 0; j < bars.length; j++) {
+                setTimeout(() => {
+                    bars[j].style.backgroundColor = END_COLOR;
+                }, (i * SPEED) + (j * SPEED));
+            }
+        } else if (toggle) {
+            const [one, two] = ani[i];
+            //if toggle, change color based on 0 or 1
+            const color = i % 4 === 0 ? COMP_COLOR : DEFAULT_COLOR;
+            //set it on delay of i*SPEED
+            setTimeout(() => {
+                bars[one].style.backgroundColor = color;
+                bars[two].style.backgroundColor = color;
+            }, i * SPEED);
+        } else {
+            const [one, two] = ani[i];
+            if (two !== -1) {
+                //only do something is it's not a filler, meaning actual swapping occurred
+                //in this case, one would be index and two would be new height at that index
+                setTimeout(() => {
+                    bars[one].style.height = two + 'px';
+                }, i * SPEED);
+            }
+        }
+    }
     }
 
     countingSort() {
-
+        
     }
 
     //render method
@@ -116,6 +200,8 @@ export default class SortAlgoVisu extends React.Component {
         const {arr} = this.state;
 
         return (
+            //see if this.state.arr is sorted
+            console.log(this.state.arr),
             <div className = "arr-container">
                 <br></br>
                 <div className = "toolbar">
