@@ -11,6 +11,8 @@
   margin: auto;
   background-color: rgba(31, 31, 31, 0.931);
   border: rgba(31, 31, 31, 0.931);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .button {

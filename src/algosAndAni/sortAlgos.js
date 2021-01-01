@@ -241,3 +241,76 @@ function bubbleSort(arr, ani) {
 ///////////////////////////////////////////////////////////////////
 
 //counting sort algos
+
+//counting sort animation
+export function countSortAni(arr, max, min) {
+    const ani = [];
+    countSort(arr, max, min, ani);
+    return ani;
+}
+
+function countSort(arr, max, min, ani) {
+    //count array
+    //with range 0 to max - min + 1
+    let ctArr = [];
+    //output array
+    let output = [];
+    //populate with 0 initially
+    for (let i = 0; i < max - min + 1; i++) {
+        ctArr.push(0);
+    }
+    for (let i = 0; i < arr.length; i++) {
+        output.push(0);
+    }
+
+    //increment counter at where the value is indexed at in ctArr
+    //i.e. if min = 5 and max = 10, and arr[i] is 7, then
+    //ctArr[2] should be incremented by one
+    //since 7 is 3rd number in our range
+    for (let i = 0; i < arr.length; i++) {
+        ctArr[(arr[i] - min)]++;
+    }
+
+    //add in indices from left to right
+    for (let i = 1; i < ctArr.length; i++) {
+        ctArr[i] += ctArr[i-1];
+    }
+
+    //for each position in arr starting from start to end
+    //the value is arr[i] - min , which adjusts the range of values to ctArr's indexing
+    //ctArr[] of that gives us the index where that value should go to in the output array
+    //we decrement that idnex value after using it, so the next such value goes to output array
+    //index one less than the one just used
+    for (let i = 0; i < arr.length; i++) {
+        output[ctArr[(arr[i] - min)]--] = arr[i];
+        //animation
+    }
+    
+    //copy output array to input array
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = output[i];
+        //animation
+        ani.push([i, output[i]]);
+    }
+    
+    //end of sort signifier
+    ani.push([-1, -1]);
+
+    //not much animation related lines here, due to the fact that:
+    //i'm not comparing nor swapping anything, but only overwriting arr[i] with output[i]
+}
+
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+//heap sort algos
+
+//heapsort animation
+export function heapSortAni(arr) {
+
+}
+
+function heapSort() {
+    
+}

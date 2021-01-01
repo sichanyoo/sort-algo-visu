@@ -3,12 +3,18 @@ import './sortAlgoVisu.css';
 import {mergeSortAni} from '../algosAndAni/sortAlgos.js';
 import {quickSortAni} from '../algosAndAni/sortAlgos.js';
 import {bubbleSortAni} from '../algosAndAni/sortAlgos.js';
+import {countSortAni} from '../algosAndAni/sortAlgos.js';
+import {heapSortAni} from '../algosAndAni/sortAlgos.js';
 
 //interval between visual changes in ms
-const SPEED = 3;
+const SPEED = 2;
 
 //number of values to sort in array
 const BARS = 250;
+
+//range of values
+const MIN = 10;
+const MAX = 700;
 
 //default color of bars
 const DEFAULT_COLOR =  'rgb(161, 161, 161)';
@@ -37,7 +43,7 @@ export default class SortAlgoVisu extends React.Component {
         //new arr to store randomized arr
         const arr = [];
         for (let i = 0; i < BARS; i++) {
-            arr.push(randomIntInInterval(10, 700));
+            arr.push(randomIntInInterval(MIN, MAX));
         }
         const bars = document.getElementsByClassName('arr-bar');
         for (let i = 0; i < bars.length; i++) {
@@ -72,7 +78,7 @@ export default class SortAlgoVisu extends React.Component {
                     //and then add j * SPEED to it
                     setTimeout(() => {
                         bars[j].style.backgroundColor = END_COLOR;
-                    }, (i * SPEED) + (j * SPEED));
+                    }, (i * SPEED) + (j * 3 * SPEED));
                 }
             } else if (toggle) {
                 //if toggle is 0 or 1, then it is just changing color time
@@ -118,7 +124,7 @@ export default class SortAlgoVisu extends React.Component {
                 for (let j = 0; j < bars.length; j++) {
                     setTimeout(() => {
                         bars[j].style.backgroundColor = END_COLOR;
-                    }, (i * SPEED) + (j * SPEED));
+                    }, (i * SPEED) + (j * 3 * SPEED));
                 }
             } else if (toggle) {
                 const [one, two] = ani[i];
@@ -167,7 +173,7 @@ export default class SortAlgoVisu extends React.Component {
             for (let j = 0; j < bars.length; j++) {
                 setTimeout(() => {
                     bars[j].style.backgroundColor = END_COLOR;
-                }, (i * SPEED) + (j * SPEED));
+                }, (i * SPEED) + (j * 3 * SPEED));
             }
         } else if (toggle) {
             const [one, two] = ani[i];
@@ -192,8 +198,36 @@ export default class SortAlgoVisu extends React.Component {
     }
 
     countingSort() {
-        
+        //animation sequence
+        const ani = countSortAni(this.state.arr, MAX, MIN);
+
+        //get bars
+        const bars = document.getElementsByClassName('arr-bar');
+
+        //loop through overwrites and animate it
+        for (let i = 0; i < ani.length; i++) {
+            //get bar
+            const [idx, ht] = ani[i];
+            if (ht === -1) {
+                //sequence sort has ended
+                //set bar colors as green
+                for (let j = 0; j < bars.length; j++) {
+                    setTimeout(() => {
+                        bars[j].style.backgroundColor = END_COLOR;
+                    }, (i * SPEED) + (j * 3 * SPEED));
+                }
+            } else {
+                //overwrite the bar heights
+                setTimeout(() => {
+                    bars[idx].style.height = ht + 'px';
+                }, (i * SPEED));
+            }
+        }
     }
+
+    /*//////////////////////////////////////
+        render() 
+    *///////////////////////////////////////
 
     //render method
     render() {
