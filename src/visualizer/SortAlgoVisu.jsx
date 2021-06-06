@@ -149,6 +149,7 @@ export default class SortAlgoVisu extends React.Component {
     }
 
     heapSort() {
+        //retrieve animation array
         const ani = heapSortAni(this.state.arr);
         
         //loop through all index pairs in animation array
@@ -309,5 +310,5 @@ export default class SortAlgoVisu extends React.Component {
 //function to generate random int betweeen min and max, inclusive
 function randomIntInInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
+} 
 
