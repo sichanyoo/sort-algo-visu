@@ -149,7 +149,44 @@ export default class SortAlgoVisu extends React.Component {
     }
 
     heapSort() {
-
+        const ani = heapSortAni(this.state.arr);
+        
+        //loop through all index pairs in animation array
+        for (let i = 0; i < ani.length; i++) {
+            //get the html collection of bars
+            const bars = document.getElementsByClassName('arr-bar');
+            //every 1st value will mean toggle on
+            //every 2nd value will mean toggle off
+            //every 3rd and 4th value are (idx, new_height)
+            //last value will mean end of animation
+            const toggle = i % 4 < 2;
+            
+            if (i === ani.length - 1) {
+                //if i reached end of sort sequence [-1, -1] make graph turn green from left to right
+                for (let j = 0; j < bars.length; j++) {
+                    setTimeout(() => {
+                        bars[j].style.backgroundColor = END_COLOR;
+                    }, (i * SPEED) + (j * 3 * SPEED));
+                }
+            } else if (toggle) {
+                //toggle colors
+                const [one, two] = ani[i];
+                //if toggle, change color based on 0 or 1
+                const color = i % 4 === 0 ? COMP_COLOR : DEFAULT_COLOR;
+                //set it on delay of i*SPEED
+                setTimeout(() => {
+                    bars[one].style.backgroundColor = color;
+                    bars[two].style.backgroundColor = color;
+                }, i * SPEED);
+            } else {
+                //else here would mean that it is time to overwrite bar height
+                setTimeout(() => {
+                    const [idx, newHt] = ani[i];
+                    const barStyle = bars[idx].style;
+                    barStyle.height = newHt + 'px';
+                }, i * SPEED);
+            }
+        }
     }
 
     bubbleSort() {
@@ -158,43 +195,43 @@ export default class SortAlgoVisu extends React.Component {
 
        //loop through all index pairs in animation array
        for (let i = 0; i < ani.length; i++) {
-        //get the html collection of bars
-        const bars = document.getElementsByClassName('arr-bar');
-        //1st and 2nd values are color toggles from comparisons
-        //3rd and 4th values are new height-index pairs
-        //1st and 2nd will always mean toggle, whereas
-        //3rd and 4th can be fillers with -1, -1 pair
-        const toggle = i % 4 < 2;
-        //factored out getting index pair
+            //get the html collection of bars
+            const bars = document.getElementsByClassName('arr-bar');
+            //1st and 2nd values are color toggles from comparisons
+            //3rd and 4th values are new height-index pairs
+            //1st and 2nd will always mean toggle, whereas
+            //3rd and 4th can be fillers with -1, -1 pair
+            const toggle = i % 4 < 2;
+            //factored out getting index pair
 
-        if (i === ani.length - 1) {
-            //if i reached end of sort sequence signifier (the last [-1, -1] inserted to ani from quickSortAni())
-            //make graph turn green from left to right
-            for (let j = 0; j < bars.length; j++) {
+            if (i === ani.length - 1) {
+                //if i reached end of sort sequence signifier (the last [-1, -1] inserted to ani from quickSortAni())
+                //make graph turn green from left to right
+                for (let j = 0; j < bars.length; j++) {
+                    setTimeout(() => {
+                        bars[j].style.backgroundColor = END_COLOR;
+                    }, (i * SPEED) + (j * 3 * SPEED));
+                }
+            } else if (toggle) {
+                const [one, two] = ani[i];
+                //if toggle, change color based on 0 or 1
+                const color = i % 4 === 0 ? COMP_COLOR : DEFAULT_COLOR;
+                //set it on delay of i*SPEED
                 setTimeout(() => {
-                    bars[j].style.backgroundColor = END_COLOR;
-                }, (i * SPEED) + (j * 3 * SPEED));
-            }
-        } else if (toggle) {
-            const [one, two] = ani[i];
-            //if toggle, change color based on 0 or 1
-            const color = i % 4 === 0 ? COMP_COLOR : DEFAULT_COLOR;
-            //set it on delay of i*SPEED
-            setTimeout(() => {
-                bars[one].style.backgroundColor = color;
-                bars[two].style.backgroundColor = color;
-            }, i * SPEED);
-        } else {
-            const [one, two] = ani[i];
-            if (two !== -1) {
-                //only do something is it's not a filler, meaning actual swapping occurred
-                //in this case, one would be index and two would be new height at that index
-                setTimeout(() => {
-                    bars[one].style.height = two + 'px';
+                    bars[one].style.backgroundColor = color;
+                    bars[two].style.backgroundColor = color;
                 }, i * SPEED);
+            } else {
+                const [one, two] = ani[i];
+                if (two !== -1) {
+                    //only do something is it's not a filler, meaning actual swapping occurred
+                    //in this case, one would be index and two would be new height at that index
+                    setTimeout(() => {
+                        bars[one].style.height = two + 'px';
+                    }, i * SPEED);
+                }
             }
         }
-    }
     }
 
     countingSort() {

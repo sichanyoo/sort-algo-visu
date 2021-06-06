@@ -313,10 +313,79 @@ export function heapSortAni(arr) {
     return ani;
 }
 
-function heapSort() {
-   
+//heapsort function with build max heap combined at beginning
+function heapSort(arr, ani) {
+   //build max heap from array at beginning of heapsort
+   let lastNonLeafNode = (arr.length / 2) - 1;
+   //size of sorted part of array(heap) at the end of array
+   let sortedPartition= 0;
+
+   //heapify all non-leaf nodes in reverse order to root node
+   for (let i = lastNonLeafNode; i >= 0; i--) {
+       heapify(arr, ani, sortedPartition, i)
+   }
+
+   //heap sort until sorted partition = array size
+   while (sortedPartition < arr.length) {
+       //index of last element in heap
+       let lastUnsorted = arr.length-1-sortedPartition
+
+       //ALL ANIMATION PAIRS OTHER THAN COME IN THREES
+       //color toggle pair before swap
+       ani.push([0, lastUnsorted]);
+       ani.push([0, lastUnsorted]);
+       //swap pair by pushing in new heights
+       ani.push([0, arr[lastUnsorted]]);
+       ani.push([lastUnsorted, arr[0]]);
+       
+       //swap last and first elements of unsorted partition of array
+       let temp = arr[0];
+       arr[0] = arr[lastUnsorted];
+       arr[lastUnsorted] = temp;
+
+       //heapify the root
+       heapify(arr, ani, sortedPartition, 0)
+
+       //increase size of sorted partition by 1
+       sortedPartition++;
+   }
+
+   //end of animation marker
+   ani.push([-1, -1])
 }
 
-function heapify() {
+//heapify function
+function heapify(arr, ani, sortedPartition, idx) {
+    //set max value as current idx
+    let max = idx;
+    //get left/right node index values
+    let lt = 2 * idx + 1;
+    let rt = 2 * idx + 2;
+    //get size of heap (unsorted partition)
+    let lastUnsorted = arr.length - 1 - sortedPartition;
+
+    //find largest between lt, rt, and idx
+    if (lt < lastUnsorted && arr[lt] > arr[max]) {
+        max = lt;
+    }
+    if (rt < lastUnsorted && arr[rt] > arr[max]) {
+        max = rt;
+    }
     
+    //if max value isn't the root, swap then recursively heapify
+    if (max !== idx) {
+        //HENCE HEAPIFY ANIMATION PAIRS COME IN THREES
+        //color toggle pair before swap
+        ani.push([max, idx]);
+        ani.push([max, idx]);
+        //push in new heights
+        ani.push([max, arr[idx]]);
+        ani.push([idx, arr[max]]);
+
+        let temp = arr[idx];
+        arr[idx] = arr[max];
+        arr[max] = temp;
+
+        heapify(arr, ani, sortedPartition, max);
+    }
 }
