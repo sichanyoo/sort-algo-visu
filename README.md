@@ -4,7 +4,7 @@
 
 This is an interactive sorting algorithm visualizer made to help you understand sorting algorithms more intuitively.
 
-This web app shows you real-time animation of how a sorting algorithm sorts randomized vertical bars in the ascending order (left to right).
+This interactive web app shows you real-time animation of how a sorting algorithm you choose sorts randomized vertical bars in the ascending order (left to right).
 
 Below image is what unsorted and newly generated array of bars look like!
 
@@ -12,13 +12,17 @@ Below image is what unsorted and newly generated array of bars look like!
 
 ## How to Use
 
-You can generate new "array" of vertical bars on screen, then choose any of the five sorting algorithm buttons to see the process of sorting.\
+You can generate new "array" of vertical bars on screen, then choose any of the five sorting algorithm buttons to see the process of sorting.
+
 The five sorting algorithms included in this project are: merge sort, quick sort, heap sort, bubble sort, and counting sort.
 
 Below is a gif of the application showing you the merge sort!
 
 ![merge sort](mergesortgif.gif)
 
+## Enjoy!
+
+<!---
 # React App Default README.md content below
 
 Below is the default README.md information
@@ -93,3 +97,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+--->
