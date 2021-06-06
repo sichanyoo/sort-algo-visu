@@ -22,6 +22,8 @@ Below is a gif of the application showing you the merge sort!
 
 ## Enjoy!
 
+![github logo](githublogo.jpg)
+
 <!---
 # React App Default README.md content below
 
