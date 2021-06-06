@@ -8,7 +8,7 @@ This interactive web app shows you real-time animation of how a sorting algorith
 
 Below image is what unsorted and newly generated array of bars look like!
 
-![Generated Array](pic1.PNG)
+![Generated Array](images/pic1.PNG)
 
 ## How to Use
 
@@ -18,11 +18,11 @@ The five sorting algorithms included in this project are: merge sort, quick sort
 
 Below is a gif of the application showing you the merge sort!
 
-![merge sort](mergesortgif.gif)
+![merge sort](images/mergesortgif.gif)
 
 ## Enjoy!
 
-![github logo](githublogo.jpg)
+![github logo](images/githublogo.jpg)
 
 <!---
 # React App Default README.md content below
