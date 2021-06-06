@@ -1,10 +1,16 @@
 # Sorting Algorithm Visualizer
 
-Welcome!\
-This is an interactive sorting algorithm visualizer web app desgiend to help you understand sorting algorithms more intuitively, by showing real-time animation of how a sorting algorithm sorts randomized vertical bars in the ascending order (left to right).\
+## Welcome!
+
+This is an interactive sorting algorithm visualizer made to help you understand sorting algorithms more intuitively.
+
+This web app shows you real-time animation of how a sorting algorithm sorts randomized vertical bars in the ascending order (left to right).
+
 Below image is what unsorted and newly generated array of bars look like!
 
 ![Generated Array](pic1.PNG)
+
+## How to Use
 
 You can generate new "array" of vertical bars on screen, then choose any of the five sorting algorithm buttons to see the process of sorting.\
 The five sorting algorithms included in this project are: merge sort, quick sort, heap sort, bubble sort, and counting sort.
@@ -17,7 +23,7 @@ Below is a gif of the application showing you the merge sort!
 
 Below is the default README.md information
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
