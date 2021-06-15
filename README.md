@@ -6,19 +6,15 @@ This is an interactive sorting algorithm visualizer made to help you understand 
 
 This interactive web app shows you real-time animation of how a sorting algorithm you choose sorts randomized vertical bars in the ascending order (left to right).
 
-Below image is what unsorted and newly generated array of bars look like!
+## Visualizer in Action
 
-![Generated Array](images/pic1.PNG)
+![merge sort](images/mergesortgif.gif)
 
 ## How to Use
 
 You can generate new "array" of vertical bars on screen, then choose any of the five sorting algorithm buttons to see the process of sorting.
 
 The five sorting algorithms included in this project are: merge sort, quick sort, heap sort, bubble sort, and counting sort.
-
-Below is a gif of the application showing you the merge sort!
-
-![merge sort](images/mergesortgif.gif)
 
 ## Enjoy!
 
