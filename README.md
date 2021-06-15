@@ -6,7 +6,7 @@ This is an interactive sorting algorithm visualizer made to help you understand 
 
 This interactive web app shows you real-time animation of how a sorting algorithm you choose sorts randomized vertical bars in the ascending order (left to right).
 
-## Visualizer in Action
+## Visualizer in Action (Merge Sort)
 
 ![merge sort](images/mergesortgif.gif)
 
